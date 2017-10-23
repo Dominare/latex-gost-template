@@ -17,12 +17,12 @@ citecolor=black, menucolor=black, filecolor=black,
 % apt-get install scalable-cyrfonts-tex
 
 \IfFileExists{cyrtimes.sty}
-    {
-        \usepackage{cyrtimespatched}
-    }
-    {
-        % А если Times нету, то будет CM...
-    }
+	{
+		\usepackage{cyrtimespatched}
+	}
+	{
+		% А если Times нету, то будет CM...
+	}
 
 \usepackage{graphicx}   % Пакет для включения рисунков
 \DeclareGraphicsExtensions{.jpg,.pdf,.png}
@@ -43,3 +43,65 @@ citecolor=black, menucolor=black, filecolor=black,
 %2 это chapter, section, и subsection
 %1 это chapter и section
 %0 это chapter.
+\usepackage{mathptmx} % Times New Roman в формулах
+\usepackage{cyrtimespatched} % Times New Roman в тексте
+\usepackage[defaultmono]{droidmono} % Droid Mono для моноширинного текста
+
+\usepackage{booktabs} % Пакет с таблицами, как в научных публикациях
+
+\usepackage{listings} % Вставка исходных кодов программ
+\usepackage{color} % Объявление цветов для ключевых слов
+\usepackage{textcomp}
+
+\usepackage{multirow} % Объединение строк в таблицах
+\usepackage{multicol} % Объединение столбцов в таблицах
+
+\usepackage{chemfig} % Вставка химических формул и реакций
+\usepackage{siunitx} % Единицы измерения по СИ
+
+\usepackage{url} % Вставка URL адресов, например, в библиографию
+\usepackage{subcaption} % Несколько изображений со своими подписями, объединенные одной общей
+
+% ----------------- coding settings ------------------
+\definecolor{listinggray}{gray}{0.5}
+\definecolor{lbcolor}{rgb}{1,1,1}
+\renewcommand*\lstlistingname{Листинг}
+\lstset{
+	backgroundcolor=\color{lbcolor},
+	tabsize=4,
+	rulecolor=,
+	% language=set your base language,
+	basicstyle=\footnotesize\fontencoding{T1}\ttfamily,
+	upquote=true,
+	aboveskip={1\baselineskip},
+	columns=fixed,
+	showstringspaces=false,
+	extendedchars=true,
+	breaklines=true,
+	mathescape=true,
+	prebreak = \raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+	frame=single,
+	showtabs=false,
+	showspaces=false,
+	showstringspaces=false,
+	keywordstyle=\color[rgb]{0, 0, 1},
+	commentstyle=\color[rgb]{0.133, 0.545, 0.133},
+	stringstyle=\color[rgb]{0.627, 0.126, 0.941},
+}
+% ----------------------- end ------------------------
+
+% ----------------- chemistry settings ------------------
+\newcommand\setpolymerdelim[2]{\def\delimleft{#1}\def\delimright{#2}}
+\def\makebraces[#1,#2]#3#4#5{%
+\edef\delimhalfdim{\the\dimexpr(#1+#2)/2}%
+\edef\delimvshift{\the\dimexpr(#1-#2)/2}%
+\chemmove{%
+\node[at=(#4),yshift=(\delimvshift)]
+{$\left\delimleft\vrule height\delimhalfdim depth\delimhalfdim
+width0pt\right.$};%
+\node[at=(#5),yshift=(\delimvshift)]
+{$\left.\vrule height\delimhalfdim depth\delimhalfdim
+width0pt\right\delimright_{\rlap{$\scriptstyle#3$}}$};}}
+\setpolymerdelim()
+\setatomsep{2em}
+% ------------------------- end -------------------------
